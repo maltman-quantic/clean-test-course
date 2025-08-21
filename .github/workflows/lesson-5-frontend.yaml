@@ -12,7 +12,7 @@ jobs:
         working-directory: frontend
     steps:
       - uses: actions/checkout@v4
-      - run: npm install
+      - run: npm install -g npm@latest
       - name: Run functional tests
         run: npm test -- --coverage --watchAll=false
   deploy:
