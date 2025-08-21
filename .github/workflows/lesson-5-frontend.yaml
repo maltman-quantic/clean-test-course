@@ -12,7 +12,7 @@ jobs:
         working-directory: frontend
     steps:
       - uses: actions/checkout@v4
-      - run: npm install -g npm@latest
+      - run: npm install
       - name: Run functional tests
         run: npm test -- --coverage --watchAll=false
   deploy:
@@ -23,6 +23,9 @@ jobs:
         working-directory: frontend
     steps:
       - uses: actions/checkout@v4
+      - uses: actions/setup-node@v3
+        with:
+          node-version: '20' 
       - run: npm install && npm run build #(commented out to save learner time)
       - name: Generate deployment package
         run: zip -r deploy.zip build Dockerfile
