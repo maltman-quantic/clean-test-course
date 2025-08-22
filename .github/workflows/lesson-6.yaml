@@ -23,7 +23,12 @@ jobs:
         working-directory: frontend
     steps:
       - uses: actions/checkout@v4
-      - run: npm install && npm run build
+      - name: install npm dependency
+        run: npm install 
+      - name: Install SASS
+        run: npm install sass -- save-dev
+      - name: run the build
+        run: npm run build
       - name: Generate deployment package
         run: zip -r deploy.zip build Dockerfile
       - name: '**PLACEHOLDER** Deploy to Elastic Beanstalk.'
